@@ -3,12 +3,14 @@ package com.camilo.cloud;
 import com.camilo.cloud.model.Contributor;
 import feign.Feign;
 import feign.gson.GsonDecoder;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.List;
 
+@Slf4j
 @SpringBootApplication
 public class StreamingAppApplication implements CommandLineRunner {
 
@@ -26,7 +28,7 @@ public class StreamingAppApplication implements CommandLineRunner {
         // Fetch and print a list of the contributors to this library.
         List<Contributor> contributors = github.contributors("docker", "docker");
         for (Contributor contributor : contributors) {
-            System.out.println(contributor.getLogin() + " (" + contributor.getContributions() + ")");
+            log.info(contributor.getLogin() + " (" + contributor.getContributions() + ")");
         }
     }
 }
